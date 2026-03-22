@@ -7,6 +7,8 @@ const express = require("express");
 const cors = require("cors")
 const connect = require("./config/db")
 
+const router  = require("./routes/index")
+const accountRoutes = require("./routes/accountRoute")
 
 const app = express();
 
@@ -17,9 +19,15 @@ connect();
 
 app.use(cors())
 
+
+
 app.get('/' , (req, res) =>{
 res.send("BACKEND IS RUNNING SUCCESSFULLY")
 })
+
+app.use('/api/v1' , router);
+app.use('/api/v1/account' , accountRoutes)
+
 
 
 app.listen(3000 , () =>{
